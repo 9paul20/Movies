@@ -27,6 +27,15 @@ class Dashboard extends StatelessWidget {
               onTap: () {
                 Navigator.pushNamed(context, '/fruit');
               },
+            ),
+            ListTile(
+              title: Text('NotesApp'),
+              subtitle: Text('Test SQLite'),
+              leading: Icon(Icons.data_exploration, color: Colors.black),
+              trailing: Icon(Icons.chevron_right, color: Colors.black),
+              onTap: () {
+                Navigator.pushNamed(context, '/notes');
+              },
             )
           ],
         ),

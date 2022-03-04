@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
+import 'package:practica2/models/notes_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -37,5 +38,24 @@ class DatabaseNotes {
   Future<int> insertar(Map<String, dynamic> row) async {
     var dbConexion = await database;
     return dbConexion.insert("tbl_notas", row);
+  }
+
+  Future<int> update(Map<String, dynamic> row) async {
+    var dbConexion = await database;
+    return dbConexion.update("tbl_notas", row,
+        where: "idNota = ?", whereArgs: [row['idNota']]);
+  }
+
+  Future<int> delete(int idNota) async {
+    var dbConexion = await database;
+    return await dbConexion
+        .delete("tbl_notas", where: "idNota = ?", whereArgs: [idNota]);
+  }
+
+  Future<List<NotesDAO>> getAllNotes() async {
+    var dbConexion = await database;
+    var result = await dbConexion.query("tbl_notas");
+    var list = result.map((note) => NotesDAO.fromMap(note)).toList();
+    return list;
   }
 }
