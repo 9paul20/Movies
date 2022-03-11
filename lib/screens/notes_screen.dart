@@ -23,13 +23,41 @@ class _NotesScreenState extends State<NotesScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('List Notes'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/add');
+              },
+              icon: Icon(Icons.note_add))
+        ],
       ),
       body: FutureBuilder(
           future: dbNotes.getAllNotes(),
           builder:
               (BuildContext context, AsyncSnapshot<List<NotesDAO>> snapshot) {
-            return Text('hola');
+            if (snapshot.hasError) {
+              return Center(child: Text('Ocurrio un error al ejecutar :('));
+            } else {
+              if (snapshot.connectionState == ConnectionState.done) {
+                return _listNotes(snapshot.data!);
+              } else {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            }
           }),
+    );
+  }
+
+  Widget _listNotes(List<NotesDAO> notes) {
+    return ListView.builder(
+      itemBuilder: (context, index) {
+        return ListTile(
+          title: Text(notes[index].titulo!),
+        );
+      },
+      itemCount: notes.length,
     );
   }
 }
