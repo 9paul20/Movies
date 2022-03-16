@@ -10,4 +10,8 @@ class NotesDAO {
         idNota: noteMap['idNota'],
         dscNota: noteMap['dscNota']);
   }
+
+  Map<String, dynamic> toMap() {
+    return {"idNota": idNota, "titulo": titulo, "dscNota": dscNota};
+  }
 }
