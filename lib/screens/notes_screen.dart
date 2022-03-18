@@ -62,10 +62,13 @@ class _NotesScreenState extends State<NotesScreen> {
             IconButton(
                 onPressed: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              AddNoteScreen(objNote: notes[index])));
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  AddNoteScreen(objNote: notes[index])))
+                      .whenComplete(() {
+                    setState(() {});
+                  });
                 },
                 icon: Icon(Icons.edit)),
             IconButton(
