@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: getApplicationRoutes(),
-      home: SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }

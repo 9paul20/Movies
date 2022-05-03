@@ -5,73 +5,16 @@ import 'package:animations/animations.dart';
 import '../constants.dart';
 //import 'package:practica2/models/video_model.dart';
 
-class CardPopularView extends StatelessWidget {
+class CardPopularViewFavourite extends StatelessWidget {
   //CardPopularView({Key? key, this.popularModel, this.video}) : super(key: key);
-  CardPopularView({Key? key, this.popularModel}) : super(key: key);
+  CardPopularViewFavourite({Key? key, this.popularModel}) : super(key: key);
 
   PopularModel? popularModel;
   //String? video;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-      child: InkWell(
-        onTap: () {
-      Navigator.pushNamed(context, '/detail', arguments: {
-        'title': popularModel!.title!,
-        'url_image':
-        'https://image.tmdb.org/t/p/w500/${popularModel!.backdrop_path!}',
-        'overview': popularModel!.overview!,
-        'id': popularModel!.id!,
-        'vote_average': popularModel!.vote_average!,
-        'vote_count': popularModel!.vote_count!,
-        'popularity': popularModel!.popularity!,
-        'original_language': popularModel!.original_language!,
-        'release_date': popularModel!.release_date!,
-        'map': popularModel!,
-        });
-      },
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    boxShadow: [kDefaultShadow],
-                    image: DecorationImage(
-                      fit: BoxFit.fill,
-                      image: NetworkImage(
-                          'https://image.tmdb.org/t/p/w500/${popularModel!.poster_path}',
-                      ),
-                    ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
-              child: Text(
-                popularModel!.title!,
-                style: Theme.of(context)
-                  .textTheme
-                  .headline5
-                  ?.copyWith(fontWeight: FontWeight.w600),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Icon(Icons.star, color: Colors.yellow[400]),
-                SizedBox(width: kDefaultPadding / 2),
-                Text("${popularModel!.vote_average}", style: Theme.of(context).textTheme.bodyText2),
-              ],
-            ),
-          ]
-        ),
-      ),
-    );
-
-    /*return Container(
+    return Container(
       decoration:
           BoxDecoration(borderRadius: BorderRadius.circular(10.0), boxShadow: const [
         BoxShadow(
@@ -116,6 +59,11 @@ class CardPopularView extends StatelessWidget {
                                 'https://image.tmdb.org/t/p/w500/${popularModel!.backdrop_path!}',
                             'overview': popularModel!.overview!,
                             'id': popularModel!.id!,
+                            'vote_average': popularModel!.vote_average!,
+                            'vote_count': popularModel!.vote_count!,
+                            'popularity': popularModel!.popularity!,
+                            'original_language': popularModel!.original_language!,
+                            'release_date': popularModel!.release_date!,
                             'map': popularModel!,
                           });
                         },
@@ -130,6 +78,6 @@ class CardPopularView extends StatelessWidget {
           ],
         ),
       ),
-    );*/
+    );
   }
 }
